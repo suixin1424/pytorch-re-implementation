@@ -1,5 +1,6 @@
 #include <pybind11/pybind11.h>
 #include "tensor.h"
+#include "ops/ops.h"
 
 #define STRINGIFY(x) #x
 #define MACRO_STRINGIFY(x) STRINGIFY(x)
@@ -29,9 +30,8 @@ PYBIND11_MODULE(ftorch, m) {
         })
         .def("__str__", &tensor<int>::str)
         .def("__add__", [](tensor<int>& t1, tensor<int>& t2){
-            tensor<int> new_tensor;
-            t1.add(new_tensor, t2);
-            return new_tensor;
+            auto value = add_tensor(t1, t2);
+            return value;
         })
         .def_property_readonly("shape", &tensor<int>::get_shape);
     
@@ -43,9 +43,8 @@ PYBIND11_MODULE(ftorch, m) {
             return value;
         })
         .def("__add__", [](tensor<float>& t1, tensor<float>& t2){
-            tensor<float> new_tensor;
-            t1.add(new_tensor, t2);
-            return new_tensor;
+            auto value = add_tensor(t1, t2);
+            return value;
         })
         .def_property_readonly("shape", &tensor<float>::get_shape);
         
@@ -57,9 +56,8 @@ PYBIND11_MODULE(ftorch, m) {
             return value;
         })
         .def("__add__", [](tensor<double>& t1, tensor<double>& t2){
-            tensor<double> new_tensor;
-            t1.add(new_tensor, t2);
-            return new_tensor;
+            auto value = add_tensor(t1, t2);
+            return value;
         })
         .def_property_readonly("shape", &tensor<double>::get_shape);
        

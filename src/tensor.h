@@ -95,7 +95,6 @@ public:
     std::shared_ptr<tensor<T>> getitem(int index);
     void setitem(int index, T value);
     void add_tensor(const std::vector<T>& caches);
-    void add(tensor<T>& new_tensor, tensor<T>& t2);
     void erase_tensor();
     std::string str();
     std::string str_helper(int depth, int index)
